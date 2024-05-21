@@ -42,7 +42,7 @@ class hashTable {
 const hash = new hashTable(50)
 
 hash.set("mane","rafi")
-hash.print()
+hash.print();
 hash.set("name","Ali")
 
 hash.print()
