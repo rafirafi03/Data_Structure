@@ -17,16 +17,24 @@ class Graph {
     // this.list[edge].add(vertex)
   }
 
-  remove(val, vertex) {
-    this.list[vertex].delete(val);
-    // for bidirectional
-    // this.list[val].delete(vertex)
-  }
+  // remove(val, vertex) {
+  //   this.list[vertex].delete(val);
+  //   // for bidirectional
+  //   // this.list[val].delete(vertex)
+  // }
 
-  removeVertex(vertex) {
-    for (let val of this.list[vertex]) {
-      this.remove(val, vertex);
+  // removeVertex(vertex) {
+  //   for (let val of this.list[vertex]) {
+  //     this.remove(val, vertex);
+  //   }
+  //   delete this.list[vertex];
+  // }
+
+  remove(vertex) {
+    for (let val in this.list) {
+      this.list[val].delete(vertex);
     }
+
     delete this.list[vertex];
   }
 
@@ -107,7 +115,7 @@ graph.addEdge(1, 4);
 graph.addEdge(2, 6);
 graph.addEdge(6, 7);
 
-graph.removeVertex(7);
+graph.remove(7);
 
 graph.bfs(1);
 console.log("---");
