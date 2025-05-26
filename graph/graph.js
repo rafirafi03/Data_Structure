@@ -35,91 +35,85 @@ class Graph {
     let visited = {};
 
     stack.push(start);
+    visited[start] = true;
 
     while (stack.length) {
       let vertex = stack.pop();
-      if (!visited[vertex]) {
-        visited[vertex] = true;
-        console.log(vertex);
-        let nearData = this.list[vertex];
-        for (let val in nearData) {
-          if (!visited[val]) {
-            stack.push(val);
-          }
+      console.log(vertex);
+
+      let nearData = this.list[vertex];
+
+      for (let val of nearData) {
+        if (!visited[val]) {
+          stack.push(val);
+          visited[val] = true;
         }
       }
     }
   }
 
   display() {
-    for(let val in this.list) {
-        console.log(val, "---->" ,[...this.list[val]])
+    for (let val in this.list) {
+      console.log(val, "---->", [...this.list[val]]);
     }
   }
 
   bfs(start) {
-    let stack = []
-    let visited = {}
+    let queue = [];
+    let visited = {};
 
-    stack.push(start)
-    visited[start] = true
+    queue.push(start);
+    visited[start] = true;
 
-    while(stack.length) {
-        let vertex = stack.shift()
-        console.log(vertex);
+    while (queue.length) {
+      let vertex = queue.shift();
+      console.log(vertex);
 
-        let nearData = this.list[vertex]
+      let nearData = this.list[vertex];
 
-        for(let val in nearData) {
-            if(!visited[val]) {
-                visited[val] = true
-                stack.push(val)
-            }
+      for (let val in nearData) {
+        if (!visited[val]) {
+          visited[val] = true;
+          queue.push(val);
         }
-
+      }
     }
-
   }
 
   findLargestKey() {
-
     let max = 0;
-    let largest = 0
+    let largest = 0;
 
-    for(let val in this.list) {
-        if(this.list[val]) {
-            let count = this.list[val].size
-            if(count > max) {
-                max = count 
-                largest = val
-            }
+    for (let val in this.list) {
+      if (this.list[val]) {
+        let count = this.list[val].size;
+        if (count > max) {
+          max = count;
+          largest = val;
         }
-        return largest
+      }
+      return largest;
     }
   }
-
-
 }
 
-let graph = new Graph()
+let graph = new Graph();
 
-graph.addEdge(1,2)
-graph.addEdge(3,4)
-graph.addEdge(5,6)
-graph.addEdge(4,3)
-graph.addEdge(1,4)
-graph.addEdge(2,6)
-graph.addEdge(6,7)
+graph.addEdge(1, 2);
+graph.addEdge(3, 4);
+graph.addEdge(5, 6);
+graph.addEdge(4, 3);
+graph.addEdge(1, 4);
+graph.addEdge(2, 6);
+graph.addEdge(6, 7);
 
+graph.removeVertex(7);
 
+graph.bfs(1);
+console.log("---");
 
-graph.removeVertex(7)
+graph.dfs(1);
 
-graph.bfs(1)
-console.log("---")
+console.log("---");
 
-graph.dfs(1)
-
-console.log("---")
-
-console.log(graph.findLargestKey())
+console.log(graph.findLargestKey());
