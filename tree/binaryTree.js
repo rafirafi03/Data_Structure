@@ -320,6 +320,12 @@ class Tree {
         }
         return sum
     }
+
+    countLeafNodes(node = this.root) {
+        if (!node) return 0;
+        if (!node.left && !node.right) return 1;
+        return this.countLeafNodes(node.left) + this.countLeafNodes(node.right);
+    }
 }
 
 let tree = new Tree()
@@ -332,18 +338,20 @@ tree.insert(60)
 tree.insert(30)
 tree.insert(12)
 
-tree.levelWise()
+console.log(tree.countLeafNodes())
 
-console.log("--------");
+// tree.levelWise()
 
-console.log(tree.max())
+// console.log("--------");
 
-console.log(tree.search(150))
+// console.log(tree.max())
 
-console.log('--------')
+// console.log(tree.search(150))
 
-tree.preOrder(tree.root)
+// console.log('--------')
 
-console.log('-------')
+// tree.preOrder(tree.root)
 
-console.log(tree.sumOfAllElement(tree.root))
+// console.log('-------')
+
+// console.log(tree.sumOfAllElement(tree.root))
